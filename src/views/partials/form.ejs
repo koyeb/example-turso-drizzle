@@ -1,0 +1,46 @@
+<form action="<%=action%>" method="POST">
+  <label for="title">Title:</label>
+  <input
+    type="text"
+    id="title"
+    name="title"
+    value="<%= typeof todo !== 'undefined' ? todo.title : '' %>"
+    required
+  />
+
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" rows="4" required>
+<%= typeof todo !== 'undefined' ? todo.description : '' %></textarea
+  >
+
+  <label for="dueDate">Due Date:</label>
+  <input type="date" id="dueDate" name="dueDate"
+  value="<%= typeof todo !== 'undefined' ? todo.dueDate.toISOString().split('T')[0] : '' %>"
+   />
+
+  <%if(action != '/submit') { %>
+  <label for="status">Status:</label>
+  <select id="status" name="status" required>
+    <% ["To-Do", "In Progress", "Completed"].forEach((status) => { %>
+    <option
+    value="<%= status %>"
+    <%= typeof todo !== 'undefined' && todo.status === status ? 'selected' : '' %>
+    ><%= status %></option>
+    <%})%>
+  </select>
+  <% } %>
+
+  <label for="priority">Priority:</label>
+  <select id="priority" name="priority" required>
+    <% ["High", "Medium", "Low"].forEach((priority) => { %>
+      <option
+      value="<%= priority %>"
+      <%= typeof todo !== 'undefined' && todo.priority === priority ? 'selected' : '' %>
+      ><%= priority %></option>
+      <%})%>
+  </select>
+
+  <button type="submit">
+    <%= typeof todo !== 'undefined' ? 'Update To-Do' : 'Add To-Do' %>
+  </button>
+</form>

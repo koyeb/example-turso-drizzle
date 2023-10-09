@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs', {title: 'New'}); %>
+  </head>
+
+  <body>
+    <div class="container">
+      <a class="link-button" href="/">Home</a>
+      <h1>Add a To-Do</h1>
+      <%- include('./partials/form.ejs', {action: '/submit'}); %>
+    </div>
+  </body>
+</html>

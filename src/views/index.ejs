@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs', {title: 'Home' }); %>
+  </head>
+
+  <body>
+    <div class="container">
+      <a class="link-button" href="/new">Add new To-Do</a>
+      <h1>To-Do List</h1>
+      <% if(todos.length) { %>
+      <ul class="todo-list">
+        <%todos.forEach((todo)=> {%>
+        <li class="todo-item">
+          <span class="task"
+            ><a href="/todo/<%= todo.id %>"><%= todo.title %></a></span
+          >
+          <span class="priority <%= todo.priority %>"
+            >Priority: <%= todo.priority %></span
+          >
+          <% if(!todo.completedAt) { %>
+          <span class="due-date"
+            >Due on: <%= todo.dueDate.toLocaleDateString('en-GB') %></span
+          >
+          <%} else { %>
+          <span class="due-date">Completed</span>
+          <%} %>
+        </li>
+        <%});%>
+      </ul>
+      <%} %>
+    </div>
+  </body>
+</html>
