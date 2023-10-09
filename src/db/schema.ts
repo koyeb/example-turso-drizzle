@@ -1,5 +1,4 @@
 import {
-  int,
   text,
   integer,
   sqliteTable,
@@ -10,7 +9,7 @@ import { sql } from "drizzle-orm";
 export const todos = sqliteTable(
   "todos",
   {
-    id: int("id").primaryKey(),
+    id: integer("id").primaryKey(),
     title: text("title").notNull(),
     description: text("description").notNull(),
     dueDate: integer("due_date", {
